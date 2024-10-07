@@ -34,9 +34,9 @@
                     </div>
                     <!-- Controles de altaas, bajas y cambios -->
                     <div claas="form-group">
-                        <asp:Button ID="btnAgregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false" />
-                         <asp:Button ID="btnModificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" Enabled="false" />
-                         <asp:Button ID="btnEliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false"  Enabled="false" />
+                        <asp:Button ID="btnAgregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false" OnClick="AgregarRegistro" />
+                         <asp:Button ID="btnModificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" OnClick="ModificarRegistro" />
+                         <asp:Button ID="btnEliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false" OnClick="EliminarRegistro" />
                          <asp:Button ID="btnLimpiar" CssClass="btn btn-default" runat="server" Text="Limpiar" UseSubmitBehavior="false" />
 
                     </div>
@@ -45,12 +45,24 @@
                 <div class="col-md-8">
                     <br />
                     <h1>Ubicaciones</h1>
+                    <asp:GridView ID="gvUbicaciones" runat="server" CssClass="table-responsive table table-bordered"
+                        AutoGenerateColumns="false" OnSelectedIndexChanged="gvUbicaciones_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="ID" HeaderText="ID" />
+                            <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" />
+                            <asp:BoundField DataField="Latitud" HeaderText="Latitud" />
+                            <asp:BoundField DataField="Longitud" HeaderText="Longitud" />
+                            <asp:ButtonField CommandName="btnSeleccionar" Text="Seleccionar">
+                            <ControlStyle CssClass="btn btn-info" />
+                            </asp:ButtonField>
+                        </Columns>
+                    </asp:GridView>
 
                </div>
 
             </div>
         </div>
-    </form>
+
     <script>
         $('#ModalMapPreview').locationpicker({
             radius: 0,
@@ -66,5 +78,6 @@
             enableAutocomplete: true
         });
     </script>
-</body>
+    </form>
+    </body>
 </html>
